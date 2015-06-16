@@ -69,7 +69,6 @@ when "init.d"
   end
 when "runit"
   include_recipe 'runit'
-
   runit_service 'kafka' do
     default_logger true
     action [:enable, :start]
