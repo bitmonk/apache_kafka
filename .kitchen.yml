@@ -13,9 +13,9 @@ platforms:
         memory: 2048
     attributes:
       zookeeper:
-        service_style: "upstart"
+        service_style: "runit"
       apache_kafka:
-        service_style: "upstart"
+        service_style: "runit"
   - name: debian-7.8
     driver_config:
       box: 'chef/debian-7.8'
@@ -27,7 +27,19 @@ platforms:
       zookeeper:
         service_style: "runit"
       apache_kafka:
-        service_style: "init.d"
+        service_style: "runit"
+  - name: centos-6.6
+    driver_config:
+      customize:
+        memory: 2048
+    run_list:
+      - recipe[runit]
+    attributes:
+      zookeeper:
+        service_style: "runit"
+      apache_kafka:
+        service_style: "runit"
+
 
 suites:
   - name: default
